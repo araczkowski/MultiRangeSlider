@@ -1,0 +1,10 @@
+{
+  "name": "multirangeslider",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.9.1",
+    "jquery-ui": "~1.9.2",
+    "components-font-awesome": "~4.2.0"
+  },
+  "devDependencies": {}
+}

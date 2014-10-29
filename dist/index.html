@@ -1,0 +1,18 @@
+<!DOCTYPE html><html class=no-js><head><meta charset=utf-8><title>MultiRangeSlider</title><meta name=description content=""><meta name=viewport content="width=device-width"><link rel="shortcut icon" href=/088e5133.favicon.ico><link rel=stylesheet href=styles/1ad10e81.vendor.css><link rel=stylesheet href=styles/241a1a51.main.css><body><div id=parent class=content><div id=slider></div></div><div id=parent2 class=content><div id=slider2></div></div><div id=parent3 class=content><div id=slider3></div></div><script src=scripts/b837f72d.vendor.js></script><script src=scripts/c452e031.main.js></script><script>var mrs, mrs2;
+        $(function () {
+            // inicialization - test from APEX (string insted of objects)
+            mrs = new Mrs('slider');
+            mrs.addPeriods('[[660, 90],[990, 120]]')
+
+
+            mrs2 = new Mrs('slider2');
+            mrs2.addPeriods('[[360, 780]]');
+
+            mrs3 = new Mrs('slider3', {
+                min: 360,
+                max: 1200,
+                step: 15
+            });
+            mrs3.addPeriods('[[360, 555],[990, 60]]')
+
+        });</script>
