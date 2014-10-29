@@ -12,7 +12,6 @@ TODO
 ===========================
 
 ***in case of many plugins on page load the code only once***
-***add a possibility to dynamically change the step value***
 
 
 How To Start (to develop the plugin)
