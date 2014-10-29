@@ -2,22 +2,17 @@ MultiRangeSlider (Mrs)
 ===================
 
 Extends jquery-ui slider widget to include multiple ranges.
-Live example at jsFiddle http://jsfiddle.net/araczkowski/et4dmz1w/embedded/result/
+Live example at jsFiddle http://jsfiddle.net/araczkowski/t3vj8wjr/embedded/result/
 
 
-![alt tag](https://raw.githubusercontent.com/araczkowski/MrDad/master/app/images/ranges.png)
+![alt tag](https://raw.githubusercontent.com/araczkowski/MultiRangeSlider/master/app/images/MultiRangeSlider.png)
 
 
 TODO
 ===========================
 
-***split the code***
-***add a possibility to have many (same type) regions on one page***
-****load the code only once****
-****add a unique identifier to each region instance (when we click on one block change the things only on this instance not for each region etc.)****
+***in case of many plugins on page load the code only once***
 ***add a possibility to dynamically change the step value***
-***other smaller things like parameter for displaying or not steps labels etc.***
-
 
 
 How To Start (to develop the plugin)
