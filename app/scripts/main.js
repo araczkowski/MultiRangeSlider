@@ -134,6 +134,7 @@
 
 
         function _addScale() {
+            $('#steps_' + elementId).remove();
             $('#' + elementId).parent().prepend('<div id="steps_' + elementId + '" class="steps"></div>');
             var eSteps = $('#steps_' + elementId);
             var nSteps = (_options.max - _options.min) / _options.step;
@@ -674,6 +675,18 @@
                 periods.push(_periods[i].toPublic());
             }
             return periods;
+        };
+
+        /**
+         * Change the step value
+         * @param {Number} step example: 30
+         * @return {Object} self instance of Mrs class
+         */
+        this.changeStep = function (step) {
+            _options.step = step;
+            _rebuild();
+            _addScale();
+            return this;
         };
 
         _init();

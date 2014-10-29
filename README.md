@@ -86,6 +86,18 @@ Mrs.getPeriods = function() {}
 ```
 
 
+=
+**changeStep**
+```javascript
+/**
+ * Change the step value
+ * @param {Number} step example: 30 (minutes)
+ * @return {Object} self instance of Mrs class
+ */
+
+Mrs.changeStep = function(step) {}
+```
+
 =========================
 
 
