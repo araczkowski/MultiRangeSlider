@@ -19,11 +19,25 @@
 </head>
 
 <body>
+    <div class="code">
+        mrs = new Mrs('slider');
+        <br>mrs.addPeriods('[[660, 90],[990, 120]]')
+    </div>
     <div id="parent" class="content">
         <div id="slider"></div>
     </div>
+    <div class="code">
+        mrs2 = new Mrs('slider2');
+        <br>mrs2.addPeriods('[[360, 780]]');
+        <br>mrs2.changeStep(10);
+    </div>
     <div id="parent2" class="content">
         <div id="slider2"></div>
+    </div>
+    <div class="code">
+        mrs3 = new Mrs('slider3', { min: 360, max: 1200, step: 15 });
+        <br>mrs3.addPeriods('[[360, 555],[990, 60]]')
+        <br>
     </div>
     <div id="parent3" class="content">
         <div id="slider3"></div>
@@ -48,6 +62,7 @@
 
             mrs2 = new Mrs('slider2');
             mrs2.addPeriods('[[360, 780]]');
+            mrs2.changeStep(10);
 
             mrs3 = new Mrs('slider3', {
                 min: 360,
