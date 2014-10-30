@@ -27,14 +27,18 @@
     text-align: center;
 }
 .ui-slider-control-plus:after {
-    content: "\f196";
-    font-family: FontAwesome;
+    /*content: "\f196";
+    font-family: FontAwesome;*/
+    content: "+";
+    font-weight: bold;
     font-size: 1em;
     color: #43838c;
 }
 .ui-slider-control-minus:after {
-    content: "\f00d";
-    font-family: FontAwesome;
+    /*content: "\f00d";
+    font-family: FontAwesome;*/
+    content: "x";
+    font-weight: bold;
     font-size: 1em;
     color: #fff;
 }

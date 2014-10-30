@@ -7,7 +7,7 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
             },
             livereload: {
                 options: {
-                    middleware: function(connect) {
+                    middleware: function (connect) {
                         return [
                             connect.static('.tmp'),
                             connect().use('/bower_components', connect.static('./bower_components')),
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
                 options: {
                     open: false,
                     port: 9001,
-                    middleware: function(connect) {
+                    middleware: function (connect) {
                         return [
                             connect.static('.tmp'),
                             connect.static('test'),
@@ -300,13 +300,6 @@ module.exports = function(grunt) {
                 cwd: '<%= config.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
-            },
-            fonts: {
-                expand: true,
-                dot: true,
-                cwd: '<%= config.app %>/bower_components/components-font-awesome/fonts',
-                dest: '<%= config.dist %>/fonts',
-                src: '*.*'
             }
         },
 
@@ -320,7 +313,6 @@ module.exports = function(grunt) {
             ],
             dist: [
                 'copy:styles',
-                'copy:fonts',
                 'imagemin',
                 'svgmin'
             ]
@@ -328,7 +320,7 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('serve', function(target) {
+    grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
         }
@@ -342,12 +334,12 @@ module.exports = function(grunt) {
         ]);
     });
 
-    grunt.registerTask('server', function(target) {
+    grunt.registerTask('server', function (target) {
         grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
         grunt.task.run([target ? ('serve:' + target) : 'serve']);
     });
 
-    grunt.registerTask('test', function(target) {
+    grunt.registerTask('test', function (target) {
         if (target !== 'watch') {
             grunt.task.run([
                 'clean:server',
