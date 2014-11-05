@@ -2,7 +2,7 @@ MultiRangeSlider (Mrs)
 ===================
 
 Extends jquery-ui slider widget to include multiple ranges.
-Live example at jsFiddle http://jsfiddle.net/araczkowski/t3vj8wjr/embedded/result/
+Live example at jsFiddle http://jsfiddle.net/araczkowski/6cq36ahs/embedded/result/
 
 
 ![alt tag](https://raw.githubusercontent.com/araczkowski/MultiRangeSlider/master/app/images/MultiRangeSlider.png)
