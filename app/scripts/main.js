@@ -520,10 +520,6 @@
                 control.on('mousedown', function (event) {
                     event.stopPropagation();
 
-                    if (_options.mode === 'blocks') {
-                        return;
-                    }
-
                     if ('minus' === type) {
                         key = _getPeriodKey(identifier);
                         if (key !== -1) {

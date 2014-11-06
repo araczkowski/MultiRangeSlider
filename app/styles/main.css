@@ -54,16 +54,15 @@
 }
 .step {
     float: left;
-    background-color: #43838c;
     height: 60px;
-    border: 1px solid #43838c;
+    background-color: #e9f4f8;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 .step_content {
-    background-color: #e9f4f8;
     height: 100%;
+    border: 1px solid #43838c
 }
 .tick {
     border: 1px solid transparent;
