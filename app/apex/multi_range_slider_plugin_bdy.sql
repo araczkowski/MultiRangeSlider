@@ -3,7 +3,7 @@ create or replace package body multi_range_slider_plugin is
   /*
    * DEMO DATA
    *
-   create table multi_range_slider_data(mrs_id varchar2(4000), mrs_data varchar2(4000))
+   create table TEST_PLUGINS_DATA (mrs_id varchar2(4000), mrs_data varchar2(4000))
    1  mrs1  [[390,480],[720,840],[960,1140]]
    2  mrs2  [[390,480],[720,1140]]
    3  mrs3  [[390,1140]]
@@ -28,10 +28,10 @@ create or replace package body multi_range_slider_plugin is
                                                                             '90');
 
     l_handleLabelDispFormat apex_application_page_regions.attribute_06%type := coalesce(p_region.attribute_06,
-                                                                                        'function(steps) {var hours = Math.floor(Math.abs(steps) / 60); var minutes = Math.abs(steps) % 60; return ((hours < 10 && hours >= 0) ? "0" : "") + hours + ":" + ((minutes < 10 && minutes >= 0) ? "0" : "") + minutes; }');
+                                                                                        'function(steps) {var hours = Math.floor(Math.abs(steps) / 60); var minutes = Math.abs(steps) % 60; return ((hours < 10  >= 0) ? "0" : "") + hours + ":" + ((minutes < 10  >= 0) ? "0" : "") + minutes; }');
 
     l_stepLabelDispFormat apex_application_page_regions.attribute_07%type := coalesce(p_region.attribute_07,
-                                                                                      'function(steps) {var hours = Math.floor(Math.abs(steps) / 60);return Math.abs(steps) % 60 === 0 ? ((hours < 10 && hours >= 0) ? "0" : "") + hours : ""; }');
+                                                                                      'function(steps) {var hours = Math.floor(Math.abs(steps) / 60);return Math.abs(steps) % 60 === 0 ? ((hours < 10  >= 0) ? "0" : "") + hours : ""; }');
 
     --
     l_elementId      apex_application_page_regions.attribute_08%type := p_region.attribute_08;
@@ -40,7 +40,7 @@ create or replace package body multi_range_slider_plugin is
     l_options        JSON := json();
     retval           apex_plugin.t_region_render_result;
     cursor c_slider_data(pc_mrs_id varchar2) is
-      select * from multi_range_slider_data m where m.mrs_id = pc_mrs_id;
+      select * from TEST_PLUGINS_DATA m where m.mrs_id = pc_mrs_id;
     r_slider_data c_slider_data%rowtype;
   begin
     if apex_application.g_debug then
@@ -108,15 +108,15 @@ create or replace package body multi_range_slider_plugin is
   begin
     select count(1)
       into l_count
-      from multi_range_slider_data
+      from TEST_PLUGINS_DATA
      where mrs_id = p_id;
 
     if l_count > 0 then
-      update multi_range_slider_data
+      update TEST_PLUGINS_DATA
          set mrs_data = p_data
        where mrs_id = p_id;
     else
-      insert into multi_range_slider_data
+      insert into TEST_PLUGINS_DATA
         (mrs_id, mrs_data)
       values
         (p_id, p_data);
