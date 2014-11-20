@@ -64,9 +64,11 @@
             mrs2.changeStep(60);
 
             mrs3 = new Mrs('slider3', {
-                min: "360",
-                max: "1200",
-                step: "15"
+                min: "0",
+                max: "1440",
+                step: "15",
+                gap: "45",
+                newlength: "15"
             });
             mrs3.addPeriods('[[360, 555],[990, 60]]')
 

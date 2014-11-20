@@ -161,15 +161,24 @@
                 for (var i = 0; i < _periods.length; i++) {
                     var e = _periods[i].getAbscissas();
                     //
+                    console.log(e[0] + ' : ' + e[1]);
+
+
                     if (ui.value === e[0] || ui.value === e[1]) {
                         return false;
                     }
+
+
                     //TODO the is a problem when we slide with a mouse...
                     /*if (ui.value > e[0] && ui.value < e[1]) {
                         return false;
-                    }*/
+                    }
+                    allow to slide only step by step!!!
+                    check if ui.value <> e[0] and e[i] +/- step
+                    */
                 }
-
+                console.log(ui.value);
+                console.log('------------');
                 var index = _slider.find('.' + SELECTORS.handle['class']).index(ui.handle);
 
                 function onSlide() {
