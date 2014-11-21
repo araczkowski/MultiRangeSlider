@@ -18,28 +18,18 @@
 </head>
 
 <body>
-    <div class="code">
-        mrs = new Mrs('slider');
-        <br>mrs.addPeriods('[[660, 90],[990, 120]]')
-    </div>
-    <div id="parent" class="content">
-        <div id="slider"></div>
-    </div>
-    <div class="code">
-        mrs2 = new Mrs('slider2');
-        <br>mrs2.addPeriods('[[360, 780]]');
-        <br>mrs2.changeStep(60);
-    </div>
-    <div id="parent2" class="content">
-        <div id="slider2"></div>
-    </div>
-    <div class="code">
-        mrs3 = new Mrs('slider3', { min: 360, max: 1200, step: 15 });
-        <br>mrs3.addPeriods('[[360, 555],[990, 60]]')
+
+    <div class="MrsCode">
+        mrs = new Mrs('slider', <b>{ min: 0, max: 1440, step: 15, gap: 75, newlength: 45}</b>);
+        <br>mrs.addPeriods('[[360, 555],[990, 60]]')
+        <br>function onChangeInfo() {
+        <br>console.log(mrs.getPeriodsValues());
+        <br>};
+        <br>mrs.setOnChangeCallback(onChangeInfo);
         <br>
     </div>
-    <div id="parent3" class="content">
-        <div id="slider3"></div>
+    <div id="parent" class="MrsContent">
+        <div id="slider"></div>
     </div>
 
     <!-- build:js({app,.tmp}) scripts/vendor.js -->
@@ -52,25 +42,23 @@
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
     <script>
-        var mrs, mrs2, mrs3;
+        var mrs;
         $(function () {
             // inicialization - test from APEX (string insted of objects)
-            mrs = new Mrs('slider');
-            mrs.addPeriods('[[660, 90],[990, 120]]')
 
-
-            mrs2 = new Mrs('slider2');
-            mrs2.addPeriods('[[360, 780]]');
-            mrs2.changeStep(60);
-
-            mrs3 = new Mrs('slider3', {
+            mrs = new Mrs('slider', {
                 min: "0",
                 max: "1440",
                 step: "15",
-                gap: "45",
-                newlength: "15"
+                gap: "75",
+                newlength: "45"
             });
-            mrs3.addPeriods('[[360, 555],[990, 60]]')
+            mrs.addPeriods('[{"id":50,"start":300,"value":615},{"id":555,"start":990,"value":60}]');
+
+            function onChangeInfo() {
+                console.log(mrs.getPeriodsValues());
+            };
+            mrs.setOnChangeCallback(onChangeInfo);
 
         });
     </script>

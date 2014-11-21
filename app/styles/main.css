@@ -1,8 +1,82 @@
-.content {
-    margin-top: 30px;
+.MrsContent {
+    margin-top: 50px;
     margin-right: 30px;
     margin-bottom: 50px;
     margin-left: 30px;
+    width: 2400px;
+}
+.MrsSteps {
+    position: relative;
+    height: 60px;
+    margin-bottom: 5px;
+}
+.MrsStep {
+    float: left;
+    height: 60px;
+    background-color: #e9f4f8;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.MrsStepContentFullHour {
+    height: 100%;
+    border-left: 2px solid #43838c;
+    border-top: 1px solid #43838c;
+    border-bottom: 1px solid #43838c;
+}
+.MrsStepContentHalfHour {
+    height: 100%;
+    border-left: 1px solid #43838c;
+    border-top: 1px solid #43838c;
+    border-bottom: 1px solid #43838c;
+}
+.MrsStepContent {
+    height: 100%;
+    border-top: 1px solid #43838c;
+    border-bottom: 1px solid #43838c;
+    border-left: 1px dotted #43838c;
+}
+.MrsStepContentEnd {
+    height: 100%;
+    border-right: 2px solid #43838c;
+}
+.MrsTick {
+    border: 1px solid transparent;
+    position: absolute;
+    margin-left: -.6em;
+    margin-top: -20px;
+    text-align: center;
+    color: #43838c;
+}
+.MrsHandleLabel {
+    position: absolute;
+    font-size: .9em;
+    margin-top: 2.1em;
+    margin-left: -.9em;
+    /*apex
+    margin-top: -2.8em;
+    margin-left: -1em;
+    */
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    padding: .2em;
+    -moz-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    color: #43838c;
+}
+/* code */
+
+.MrsCode {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    color: #998;
+    font-style: italic;
 }
 .ui-slider-horizontal {
     width: 96%;
@@ -47,31 +121,6 @@
 .ui-slider-handle {
     cursor: pointer !important;
 }
-.steps {
-    position: relative;
-    height: 60px;
-    margin-bottom: 5px;
-}
-.step {
-    float: left;
-    height: 60px;
-    background-color: #e9f4f8;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.step_content {
-    height: 100%;
-    border: 1px solid #43838c
-}
-.tick {
-    border: 1px solid transparent;
-    position: absolute;
-    margin-left: -.6em;
-    margin-top: -20px;
-    text-align: center;
-    color: #43838c;
-}
 .ui-slider-handle {
     background-color: #e9f4f8;
     border: 1px solid #43838c !important;
@@ -90,35 +139,4 @@
 }
 .ui-widget-content {
     border: 0px !important;
-}
-.handle_label {
-    position: absolute;
-    font-size: .9em;
-    margin-top: 2.3em;
-    margin-left: -1em;
-    /*apex
-    margin-top: -2.8em;
-    margin-left: -1em;
-    */
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-    background: rgba(255, 255, 255, 0.9);
-    padding: .2em;
-    -moz-border-radius: 3px 3px 3px 3px;
-    border-radius: 3px 3px 3px 3px;
-    color: #43838c;
-}
-/* code */
-
-.code {
-    padding: 16px;
-    overflow: auto;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f7f7f7;
-    border-radius: 3px;
-    color: #998;
-    font-style: italic;
 }

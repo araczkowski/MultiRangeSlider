@@ -67,7 +67,7 @@
         var _periods = [];
         var _periodIdIncrementor = 0;
 
-        var Period = function (start, end) {
+        var Period = function (start, end, id) {
             var _self = this,
                 _id,
                 _abscissas,
@@ -77,7 +77,7 @@
                 if (start >= end) {
                     throw 'Invalid arguments passed';
                 }
-                _id = ++_periodIdIncrementor;
+                _id = id || ++_periodIdIncrementor * -1;
                 _abscissas = [start, end];
             }
 
@@ -135,18 +135,36 @@
 
         function _addScale() {
             $('#steps_' + elementId).remove();
-            $('#' + elementId).parent().prepend('<div id="steps_' + elementId + '" class="steps"></div>');
+            $('#' + elementId).parent().prepend('<div id="steps_' + elementId + '" class="MrsSteps"></div>');
             var eSteps = $('#steps_' + elementId);
             var nSteps = (_options.max - _options.min) / _options.step;
             var stepWidth = 96 / nSteps;
+            var mrsStepContentClass = 'MrsStepContent';
+            var mrsStep = 0;
             for (var i = 0; nSteps > i; i++) {
+                mrsStep = (i * _options.step) % 60;
+
+                if (mrsStep === 0) {
+                    mrsStepContentClass = 'MrsStepContentFullHour ';
+                } else if (mrsStep === 30) {
+                    mrsStepContentClass = 'MrsStepContentHalfHour ';
+                } else {
+                    mrsStepContentClass = 'MrsStepContent ';
+                }
+                if (i === 0) {
+                    mrsStepContentClass = mrsStepContentClass + 'MrsStepContentStart';
+                }
+                if (i === nSteps - 1) {
+                    mrsStepContentClass = mrsStepContentClass + 'MrsStepContentEnd';
+                }
+
                 var stepValue = _options.min + (i * _options.step);
                 $('<div/>', {
                     'id': 'step_' + elementId + '_' + (Number(i) + 1),
-                    'class': 'step',
+                    'class': 'MrsStep',
                     'style': 'width:' + stepWidth + '%',
                     'data-start': stepValue,
-                    'html': '<span class="tick">' + _options.stepLabelDispFormat(stepValue) + '</span><div class="step_content"></div></div>'
+                    'html': '<span class="MrsTick">' + _options.stepLabelDispFormat(stepValue) + '</span><div class="' + mrsStepContentClass + '"></div></div>'
                 }).appendTo(eSteps);
             }
             //
@@ -157,29 +175,37 @@
         function _initEvents() {
 
             _options.slide = function (event, ui) {
+
+                var index = _slider.find('.' + SELECTORS.handle['class']).index(ui.handle);
+
+
+                // move only step by step
+
+                /* var min0 = pCurr[0] - _options.step;
+                var max0 = pCurr[0] + _options.step;
+                var min1 = pCurr[1] - _options.step;
+                var max1 = pCurr[1] + _options.step;
+
+                if (uiVal !== min0 & uiVal !== max0 & uiVal !== min1 & uiVal !== max1) {
+                    return false;
+                }*/
+
                 // check the minimum gap
+                var kCurr = _getPeriodKeyByIndex(index);
+                //var pCurr = _periods[kCurr].getAbscissas();
+                var uiVal = ui.value;
+
                 for (var i = 0; i < _periods.length; i++) {
                     var e = _periods[i].getAbscissas();
-                    //
-                    console.log(e[0] + ' : ' + e[1]);
-
-
-                    if (ui.value === e[0] || ui.value === e[1]) {
-                        return false;
+                    if (i !== kCurr) {
+                        if (uiVal === e[0] || uiVal === e[1]) {
+                            return false;
+                        }
+                        if (uiVal > e[0] && uiVal < e[1]) {
+                            return false;
+                        }
                     }
-
-
-                    //TODO the is a problem when we slide with a mouse...
-                    /*if (ui.value > e[0] && ui.value < e[1]) {
-                        return false;
-                    }
-                    allow to slide only step by step!!!
-                    check if ui.value <> e[0] and e[i] +/- step
-                    */
                 }
-                console.log(ui.value);
-                console.log('------------');
-                var index = _slider.find('.' + SELECTORS.handle['class']).index(ui.handle);
 
                 function onSlide() {
                     if (typeof (_onHandleSlide) === 'function') {
@@ -399,7 +425,7 @@
             return value;
         }
 
-        function _addPeriod(start, length) {
+        function _addPeriod(start, length, pId) {
             start = _sanitizeValue(start);
             length = _sanitizeValue(length);
             if (!_isValidParams(start, length)) {
@@ -418,7 +444,7 @@
                 return _addPeriod(start, length);
             }
             try {
-                var period = new Period(start, start + length);
+                var period = new Period(start, start + length, pId);
                 _periods.push(period);
                 _periods.sort(function (a, b) {
                     return a.getAbscissas()[0] - b.getAbscissas()[0];
@@ -642,7 +668,7 @@
 
             handles.removeClass('arrow-left arrow-right');
             for (var index in values) {
-                handles.eq(index).html('<span class="handle_label">' + _options.handleLabelDispFormat(values[index]) + '</span>');
+                handles.eq(index).html('<span class="MrsHandleLabel">' + _options.handleLabelDispFormat(values[index]) + '</span>');
                 if (values[index] === prevSibling) {
                     handles.eq(index - 1).addClass('arrow-left');
                     handles.eq(index).addClass('arrow-right');
@@ -654,7 +680,7 @@
 
         /**
          * Adds multiple periods and rebuilds the mrs plugin
-         * @param {Array} periodsArray example: Array([[0,20],[40,60]...])
+         * @param {Array} periodsArray example: Array([{"id":1,"start":300,"value":615},{"id":2,"start":990,"value":60}])
          * @return {Object} self instance of Mrs class
          */
         this.addPeriods = function (periodsArray) {
@@ -664,7 +690,7 @@
             }
 
             for (var i = 0; i < periodsArray.length; i++) {
-                _addPeriod(periodsArray[i][0], periodsArray[i][1]);
+                _addPeriod(periodsArray[i].start, periodsArray[i].value, periodsArray[i].id);
             }
             _rebuild();
             return this;
@@ -683,6 +709,23 @@
         };
 
         /**
+         * Gets all periods values for this mrs instance
+         * @return Array of objects with each period values "[{"id":1,"start":300,"value":615},{"id":2,"start":990,"value":60}]"
+         */
+        this.getPeriodsValues = function () {
+            var period = {};
+            var periods = [];
+            for (var i = 0; i < _periods.length; i++) {
+                period = {};
+                period.id = _periods[i].getId();
+                period.start = _periods[i].getAbscissas()[0];
+                period.value = _periods[i].getAbscissas()[1] - _periods[i].getAbscissas()[0];
+                periods.push(period);
+            }
+            return JSON.stringify(periods);
+        };
+
+        /**
          * Change the step value
          * @param {Number} step example: 30
          * @return {Object} self instance of Mrs class
@@ -691,6 +734,26 @@
             _options.step = step;
             _rebuild();
             _addScale();
+            return this;
+        };
+
+        /**
+         * Sets callback function that can be used when the plugin value will change
+         *
+         * @param {Function} callbackFunction
+         *      stores a callback function
+         *
+         * @example
+         *      mrs.setOnChangeCallback(function(callback));
+         * @return {Object} self instance of Mrs class
+         */
+        this.setOnChangeCallback = function (callbackFunction) {
+            if (typeof (callbackFunction) === 'function') {
+                _onAddPeriod = callbackFunction;
+                _onDeletePeriod = callbackFunction;
+                _onHandleMouseenter = callbackFunction;
+                _onHandleSlide = callbackFunction;
+            }
             return this;
         };
 
