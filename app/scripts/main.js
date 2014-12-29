@@ -234,7 +234,10 @@
                     }
                     return false;
                 }
-                _updateHandle(index, ui.value);
+                //async
+                setTimeout(function () {
+                    _updateHandle(index, ui.value);
+                }, 0);
                 return onSlide();
             };
 
@@ -666,12 +669,11 @@
             var handles = _slider.find('.' + SELECTORS.handle['class']);
             var values = _slider.mrs('option', 'values');
 
-            _markOnScale(values);
 
             /*var prevSibling = -1;
             handles.removeClass('arrow-left arrow-right');*/
             for (var index in values) {
-                handles.eq(index).html('<i class="fa fa-eject fa-2x"></i><span class="MrsHandleLabel">' + _options.handleLabelDispFormat(values[index]) + '</span>');
+                handles.eq(index).html('<i class="fa fa-eject fa-2x"></i><br /><span class="MrsHandleLabel">' + _options.handleLabelDispFormat(values[index]) + '</span>');
                 /*if (values[index] === prevSibling) {
                     handles.eq(index - 1).addClass('arrow-left');
                     handles.eq(index).addClass('arrow-right');
@@ -679,8 +681,16 @@
                 prevSibling = values[index];
                 */
             }
-            _toggleHandles(values.length);
+
+            setTimeout(function () {
+                _markOnScale();
+            }, 0);
+            setTimeout(function () {
+                _toggleHandles(values.length);
+            }, 0);
         }
+
+
 
         function _markOnScale() {
             var steps = $('div.MrsStep');
