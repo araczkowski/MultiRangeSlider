@@ -167,6 +167,7 @@
                     'html': '<span class="MrsTick">' + _options.stepLabelDispFormat(stepValue) + '</span><div class="' + mrsStepContentClass + '"></div></div>'
                 }).appendTo(eSteps);
             }
+            $('#steps_' + elementId).append('<div><span class="MrsTick">' + _options.stepLabelDispFormat(_options.min + (nSteps * _options.step)) + '</span></div>');
             //
             $('#' + elementId).width(nSteps * stepWidth + '%');
         }
@@ -664,18 +665,50 @@
         function _refreshHandles() {
             var handles = _slider.find('.' + SELECTORS.handle['class']);
             var values = _slider.mrs('option', 'values');
-            var prevSibling = -1;
 
-            handles.removeClass('arrow-left arrow-right');
+            _markOnScale(values);
+
+            /*var prevSibling = -1;
+            handles.removeClass('arrow-left arrow-right');*/
             for (var index in values) {
-                handles.eq(index).html('<span class="MrsHandleLabel">' + _options.handleLabelDispFormat(values[index]) + '</span>');
-                if (values[index] === prevSibling) {
+                handles.eq(index).html('<i class="fa fa-eject fa-2x"></i><span class="MrsHandleLabel">' + _options.handleLabelDispFormat(values[index]) + '</span>');
+                /*if (values[index] === prevSibling) {
                     handles.eq(index - 1).addClass('arrow-left');
                     handles.eq(index).addClass('arrow-right');
                 }
                 prevSibling = values[index];
+                */
             }
             _toggleHandles(values.length);
+        }
+
+        function _markOnScale() {
+            var steps = $('div.MrsStep');
+            //reset color
+            steps.css('background-color', '#e6f7fd');
+
+            var period = {};
+            var periods = [];
+            for (var i = 0; i < _periods.length; i++) {
+                period = {};
+                period.start = _periods[i].getAbscissas()[0];
+                period.stop = _periods[i].getAbscissas()[1];
+                periods.push(period);
+            }
+            var dataStart;
+            //check if steps are between
+            steps.each(function () {
+                dataStart = this.getAttribute('data-start');
+                for (var i = 0; i < periods.length; i++) {
+                    if (dataStart >= periods[i].start && dataStart < periods[i].stop) {
+                        $(this).css('background-color', '#ffd6b8');
+                    }
+                }
+
+            });
+
+
+
         }
 
         /**

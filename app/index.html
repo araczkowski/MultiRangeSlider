@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
     <!-- build:css styles/vendor.css -->
+     <!-- like in apex-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
     <!-- bower:css -->
     <!-- endbower -->
@@ -19,16 +21,8 @@
 
 <body>
 
-    <div class="MrsCode">
-        mrs = new Mrs('slider', <b>{ min: 0, max: 1440, step: 15, gap: 75, newlength: 45}</b>);
-        <br>mrs.addPeriods('[[360, 555],[990, 60]]')
-        <br>function onChangeInfo() {
-        <br>console.log(mrs.getPeriodsValues());
-        <br>};
-        <br>mrs.setOnChangeCallback(onChangeInfo);
-        <br>
-    </div>
     <div id="parent" class="MrsContent">
+        <!--style="overflow: auto; width: 960px; height: 300px"-->
         <div id="slider"></div>
     </div>
 
