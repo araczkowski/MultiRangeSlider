@@ -7,13 +7,13 @@
 }
 .MrsSteps {
     position: relative;
-    height: 60px;
+    height: 40px;
     margin-bottom: 5px;
 }
 .MrsStep {
     float: left;
-    height: 60px;
-    background-color: #e9f4f8;
+    height: 40px;
+    background-color: #e6f7fd;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -21,20 +21,14 @@
 .MrsStepContentFullHour {
     height: 100%;
     border-left: 2px solid #43838c;
-    border-top: 1px solid #43838c;
-    border-bottom: 1px solid #43838c;
 }
 .MrsStepContentHalfHour {
     height: 100%;
-    border-left: 1px solid #43838c;
-    border-top: 1px solid #43838c;
-    border-bottom: 1px solid #43838c;
+    border-left: 2px solid white;
 }
 .MrsStepContent {
     height: 100%;
-    border-top: 1px solid #43838c;
-    border-bottom: 1px solid #43838c;
-    border-left: 1px dotted #43838c;
+    border-left: 1px solid white;
 }
 .MrsStepContentEnd {
     height: 100%;
@@ -51,12 +45,8 @@
 .MrsHandleLabel {
     position: absolute;
     font-size: .9em;
-    margin-top: 2.1em;
+    margin-top: 0.5em;
     margin-left: -.9em;
-    /*apex
-    margin-top: -2.8em;
-    margin-left: -1em;
-    */
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -o-transform: rotate(90deg);
@@ -66,23 +56,15 @@
     border-radius: 3px 3px 3px 3px;
     color: #43838c;
 }
-/* code */
-
-.MrsCode {
-    padding: 16px;
-    overflow: auto;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f7f7f7;
-    border-radius: 3px;
-    color: #998;
-    font-style: italic;
+i.fa-eject {
+    margin-left: -0.1em;
+    color: #ff8229;
 }
 .ui-slider-horizontal {
     width: 96%;
 }
 .ui-slider-horizontal .ui-slider-range {
-    background-color: #ff930f;
+    /*background-color: #ff930f;*/
 }
 .ui-slider-control-plus,
 .ui-slider-control-minus {
@@ -90,7 +72,7 @@
     height: 26px;
     position: absolute;
     z-index: 99;
-    margin: -7px 0 0 -13px;
+    margin: 0 0 0 -13px;
     line-height: 26px;
 }
 .ui-slider-control-plus:after,
@@ -101,20 +83,20 @@
     text-align: center;
 }
 .ui-slider-control-plus:after {
-    /*content: "\f196";
-    font-family: FontAwesome;*/
-    content: "+";
-    font-weight: bold;
-    font-size: 1em;
-    color: #43838c;
+    content: "\f0fe";
+    font-family: FontAwesome;
+    /*font-weight: bold;
+    content: "+";*/
+    font-size: 2em;
+    color: #00abe8;
 }
 .ui-slider-control-minus:after {
-    /*content: "\f00d";
-    font-family: FontAwesome;*/
-    content: "x";
-    font-weight: bold;
-    font-size: 1em;
-    color: #fff;
+    content: "\f146";
+    font-family: FontAwesome;
+    /*content: "x";
+    font-weight: bold;*/
+    font-size: 2em;
+    color: #ff8229;
 }
 .ui-slider-control-minus,
 .ui-slider-control-plus,
@@ -122,8 +104,12 @@
     cursor: pointer !important;
 }
 .ui-slider-handle {
-    background-color: #e9f4f8;
-    border: 1px solid #43838c !important;
+    background-image: none !important;
+    background-color: transparent !important;
+    content: "\f052" !important;
+    font-family: FontAwesome !important;
+    /*background-color: #e9f4f8;
+    border: 1px solid #43838c !important;*/
 }
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
@@ -132,7 +118,12 @@
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
     background: none;
-    background-color: #43838c;
+    background-color: none;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    border: none;
 }
 .ui-slider .ui-slider-handle {
     text-decoration: none;
