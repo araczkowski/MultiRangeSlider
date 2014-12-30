@@ -180,16 +180,6 @@
                 var index = _slider.find('.' + SELECTORS.handle['class']).index(ui.handle);
 
 
-                // move only step by step
-
-                /* var min0 = pCurr[0] - _options.step;
-                var max0 = pCurr[0] + _options.step;
-                var min1 = pCurr[1] - _options.step;
-                var max1 = pCurr[1] + _options.step;
-
-                if (uiVal !== min0 & uiVal !== max0 & uiVal !== min1 & uiVal !== max1) {
-                    return false;
-                }*/
 
                 // check the minimum gap
                 var kCurr = _getPeriodKeyByIndex(index);
@@ -207,6 +197,13 @@
                         }
                     }
                 }
+
+                // slider
+               /* setTimeout(function () {
+                    _scrollLeft(uiVal);
+                }, 0);*/
+
+
 
                 function onSlide() {
                     if (typeof (_onHandleSlide) === 'function') {
@@ -235,11 +232,26 @@
                     return false;
                 }
                 //async
-                setTimeout(function () {
-                    _updateHandle(index, ui.value);
-                }, 0);
+                /*setTimeout(function () {*/
+                _updateHandle(index, ui.value);
+                /*}, 0);*/
                 return onSlide();
             };
+
+            function _scrollLeft(curVal) {
+
+                console.log(curVal);
+                // slider
+                var sLeft = $('#pluginRegion').scrollLeft();
+                var offset = curVal;//curVal - sLeft;
+                if (offset < 250) {
+                    $('#pluginRegion').scrollLeft(sLeft - 15);
+                }
+                if (offset > 1080) {
+                    $('#pluginRegion').scrollLeft(sLeft + 15);
+                }
+                //
+            }
 
             _slider.on('mouseenter', '.' + SELECTORS.handle['class'], function () {
                 if (typeof (_onHandleMouseenter) === 'function') {
@@ -668,31 +680,18 @@
         function _refreshHandles() {
             var handles = _slider.find('.' + SELECTORS.handle['class']);
             var values = _slider.mrs('option', 'values');
-
-
-            /*var prevSibling = -1;
-            handles.removeClass('arrow-left arrow-right');*/
             for (var index in values) {
                 handles.eq(index).html('<i class="fa fa-eject fa-2x"></i><br /><span class="MrsHandleLabel">' + _options.handleLabelDispFormat(values[index]) + '</span>');
-                /*if (values[index] === prevSibling) {
-                    handles.eq(index - 1).addClass('arrow-left');
-                    handles.eq(index).addClass('arrow-right');
-                }
-                prevSibling = values[index];
-                */
+
             }
 
-            setTimeout(function () {
-                _markOnScale();
-            }, 0);
-            setTimeout(function () {
-                _toggleHandles(values.length);
-            }, 0);
+            _markRangeOnScale();
+            _toggleHandles(values.length);
         }
 
 
 
-        function _markOnScale() {
+        function _markRangeOnScale() {
             var steps = $('div.MrsStep');
             //reset color
             steps.css('background-color', '#e6f7fd');

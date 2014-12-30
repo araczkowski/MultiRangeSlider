@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
     <!-- build:css styles/vendor.css -->
-     <!-- like in apex-->
+    <!-- like in apex-->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
     <!-- bower:css -->
@@ -21,9 +21,10 @@
 
 <body>
 
-    <div id="parent" class="MrsContent">
-        <!--style="overflow: auto; width: 960px; height: 300px"-->
-        <div id="slider"></div>
+    <div id="pluginRegion" style="width:960px; overflow:auto;">
+        <div id="parent" class="MrsContent" style="width: 1800px; height: 100px;">
+            <div id="slider"></div>
+        </div>
     </div>
 
     <!-- build:js({app,.tmp}) scripts/vendor.js -->
@@ -50,9 +51,18 @@
             mrs.addPeriods('[{"id":50,"start":300,"value":615},{"id":555,"start":990,"value":60}]');
 
             function onChangeInfo() {
-                console.log(mrs.getPeriodsValues());
+                //console.log(mrs.getPeriodsValues());
             };
             mrs.setOnChangeCallback(onChangeInfo);
+
+            //
+            var outer = $('#pluginRegion').width();
+            var inner = $('.MrsContent').width();
+            $('#pluginRegion').scrollLeft((inner - outer) / 2);
+
+            /*$(document).mousemove(function (event) {
+                console.log(event.pageX);
+            });*/
 
         });
     </script>
