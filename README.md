@@ -8,11 +8,6 @@ Live example at jsFiddle http://jsfiddle.net/araczkowski/6cq36ahs/embedded/resul
 ![alt tag](https://raw.githubusercontent.com/araczkowski/MultiRangeSlider/master/app/images/MultiRangeSlider.png)
 
 
-TODO
-===========================
-
-***in case of many plugins on page load the code only once***
-
 
 How To Start (to develop the plugin)
 ===========================
